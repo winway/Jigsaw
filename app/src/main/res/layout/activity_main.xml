@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/main_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        tools:text="时间: 0 秒" />
+
+    <LinearLayout
+        android:id="@+id/main_fragment_00_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/main_fragment_00x00_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_00x00" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_00x01_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_00x01" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_00x02_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_00x02" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_fragment_01_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/main_fragment_01x00_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_01x00" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_01x01_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_01x01" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_01x02_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_01x02" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_fragment_02_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/main_fragment_02x00_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_02x00" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_02x01_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            tools:src="@mipmap/img_xiaoxiong_02x01" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_02x02_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:padding="0dp"
+            android:visibility="invisible"
+            tools:src="@mipmap/img_xiaoxiong_02x02" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/main_restart_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="restart"
+        android:text="重新开始" />
+
+    <ImageView
+        android:id="@+id/main_integral_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/yuantu" />
+
+</LinearLayout>
