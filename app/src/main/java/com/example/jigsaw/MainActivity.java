@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             R.mipmap.img_xiaoxiong_01x00, R.mipmap.img_xiaoxiong_01x01, R.mipmap.img_xiaoxiong_01x02,
             R.mipmap.img_xiaoxiong_02x00, R.mipmap.img_xiaoxiong_02x01, R.mipmap.img_xiaoxiong_02x02};
     private int[] mFragmentIndex = new int[mFragmentResId.length];
+
+    private int mBlankIndex = 8;
+    private int mBlankViewId = R.id.main_fragment_02x02_ib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +98,114 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_fragment_00x00_ib:
+                move(R.id.main_fragment_00x00_ib, 0);
+                break;
+            case R.id.main_fragment_00x01_ib:
+                move(R.id.main_fragment_00x01_ib, 1);
+                break;
+            case R.id.main_fragment_00x02_ib:
+                move(R.id.main_fragment_00x02_ib, 2);
+                break;
+            case R.id.main_fragment_01x00_ib:
+                move(R.id.main_fragment_01x00_ib, 3);
+                break;
+            case R.id.main_fragment_01x01_ib:
+                move(R.id.main_fragment_01x01_ib, 4);
+                break;
+            case R.id.main_fragment_01x02_ib:
+                move(R.id.main_fragment_01x02_ib, 5);
+                break;
+            case R.id.main_fragment_02x00_ib:
+                move(R.id.main_fragment_02x00_ib, 6);
+                break;
+            case R.id.main_fragment_02x01_ib:
+                move(R.id.main_fragment_02x01_ib, 7);
+                break;
+            case R.id.main_fragment_02x02_ib:
+                move(R.id.main_fragment_02x02_ib, 8);
+                break;
+        }
+    }
 
+    private void move(int resId, int index) {
+        int indexX = index / 3;
+        int indexY = index % 3;
+        int blankIndexX = mBlankIndex / 3;
+        int blankIndexY = mBlankIndex % 3;
+
+        int diffX = Math.abs(indexX - blankIndexX);
+        int diffY = Math.abs(indexY - blankIndexY);
+        if ((diffX == 0 && diffY == 1) || (diffX == 1 && diffY == 0)) {
+            ImageButton clickIB = findViewById(resId);
+            ImageButton blankIB = findViewById(mBlankViewId);
+
+            clickIB.setVisibility(View.INVISIBLE);
+            blankIB.setImageResource(mFragmentResId[mFragmentIndex[index]]);
+            blankIB.setVisibility(View.VISIBLE);
+
+            swap(index, mBlankIndex);
+
+            mBlankIndex = index;
+            mBlankViewId = resId;
+
+            isComplete();
+        }
+    }
+
+    private void isComplete() {
+        boolean isComplete = true;
+        for (int i = 0; i < mFragmentIndex.length; i++) {
+            if (mFragmentIndex[i] != i) {
+                isComplete = false;
+                break;
+            }
+        }
+
+        if (isComplete) {
+            mHandler.removeMessages(MSG_TIME_COUNTER);
+
+            mFragmentIB00.setClickable(false);
+            mFragmentIB01.setClickable(false);
+            mFragmentIB02.setClickable(false);
+            mFragmentIB10.setClickable(false);
+            mFragmentIB11.setClickable(false);
+            mFragmentIB12.setClickable(false);
+            mFragmentIB20.setClickable(false);
+            mFragmentIB21.setClickable(false);
+            mFragmentIB22.setClickable(false);
+
+            mFragmentIB22.setImageResource(mFragmentResId[8]);
+            mFragmentIB22.setVisibility(View.VISIBLE);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Done! time: " + mTime + "s")
+                    .setPositiveButton("OK", null);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 
     public void restart(View view) {
+        mFragmentIB00.setClickable(true);
+        mFragmentIB01.setClickable(true);
+        mFragmentIB02.setClickable(true);
+        mFragmentIB10.setClickable(true);
+        mFragmentIB11.setClickable(true);
+        mFragmentIB12.setClickable(true);
+        mFragmentIB20.setClickable(true);
+        mFragmentIB21.setClickable(true);
+        mFragmentIB22.setClickable(true);
+
+        ImageButton blankIB = findViewById(mBlankViewId);
+        blankIB.setVisibility(View.VISIBLE);
+
+        mFragmentIB22.setVisibility(View.INVISIBLE);
+
+        mBlankIndex = 8;
+        mBlankViewId = R.id.main_fragment_02x02_ib;
+
         shuffle();
 
         mHandler.removeMessages(MSG_TIME_COUNTER);
